@@ -1,0 +1,69 @@
+<div class="container">
+  
+
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <span class="crumb">Chrome Extension Tutorial: Auto-Fill Aadhaar Verification Example</span>
+      </div>
+      <div class="row">
+
+      <div class="col-sm-3">
+        <div class="row">
+          <div class="card">
+            <div class="card-header">
+              <strong>IMPORT AADHAAR LIST</strong> You can download Excel Format at <a href="https://drive.google.com/drive/folders/1rjqsnG2ettPmyTvSAJ3BpnrztlzCbqZQ?usp=sharing" target="_blank">Good Drive</a>
+            </div>
+              <form class="form-horizontal" [formGroup]="createForm">
+            <div class="card-body">
+                <div class="form-group row">
+                  <div class="col-md-12">
+                    <input type="file" style="display: inline-block;" formControlName="theFile" class="form-control" (change)="incomingfile($event)" placeholder="Upload file" accept=".xlsx, .xls, .ods, .csv">
+                    <input type="hidden" name="fileHidden" formControlName="imageInput"/>
+                  </div>
+                </div>
+
+              <div class="form-group col-md-12" *ngIf="!validFile">
+                Invalid File
+              </div>
+
+            </div>
+              </form>
+          </div>
+          
+          <div class="card">
+              <div class="card-body">
+                OTHER EXAMPLE <br><br>
+                <button class="btn btn-sm btn-info" (click)="gotoPmKisan()">PM Kissan Status</button>
+              </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-lg-9">
+        <div class="card">
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Aadhaar Number</th>
+                  <th>Check</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of theInput; index as i">
+                  <td>{{i+1}}</td>
+                  <td>{{item.aadhaarno}}</td>
+                  <td>                        
+                        <div> 
+                            <a class="btn btn-sm btn-warning" href="https://resident.uidai.gov.in/verify?uidno={{item.aadhaarno}}&type=verify" target="_blank">Verify Aadhaar</a>
+                        </div>
+                    </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      </div><!--/.row-->
+</div>
